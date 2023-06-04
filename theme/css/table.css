@@ -1,0 +1,61 @@
+/*
+    ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+    Copyright Mr.Webmaster - www.mrwebmaster.it
+    CSS Table by Mr.Webmaster
+    Author: Luca Ruggiero
+    ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+    Do not remove this comment
+    ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+*/
+
+/* Colors: you can modify property values in this section */
+
+.mrw-th { background: #000; color: #EEE; }
+.mrw-tf { background: #FFF; color: #333; }
+.mrw-td { border-color: #DDD; }
+.mrw-tr:nth-child(even) .mrw-td { background: #FAFAFA; }
+.mrw-tr:nth-child(odd) .mrw-td { background: #EEEEEE; }
+.mrw-tr:hover .mrw-td { background: #FFFFEE; }
+
+/* Structure: do not modify the section below! */
+
+.mrw-table {
+display: table; table-layout: fixed; width: 100%; 
+-webkit-overflow-scrolling: touch;
+overflow-x: auto;
+}
+.mrw-tr { display: table-row; width: 100%; }
+.mrw-tr > div { display: table-cell; vertical-align: middle; padding: 10px 2px; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.mrw-th, .mrw-tf { font-weight: bold; }
+.mrw-td { border-bottom-width: 1px; border-bottom-style: solid; }
+.mrw-grid .mrw-td { border-left-width: 1px; border-left-style: solid; }
+.mrw-grid .mrw-td:last-child { border-right-width: 1px; border-right-style: solid; }
+.mrw-width-5 { width: 5%; }
+.mrw-width-7 { width: 6%; }
+.mrw-width-10 { width: 10%; }
+.mrw-width-13 { width: 14%; }
+.mrw-width-15 { width: 15%; }
+.mrw-width-20 { width: 20%; }
+.mrw-width-25 { width: 25%; }
+.mrw-width-30 { width: 30%; }
+.mrw-width-35 { width: 35%; }
+.mrw-width-40 { width: 40%; }
+.mrw-width-45 { width: 45%; }
+.mrw-width-50 { width: 50%; }
+.mrw-width-55 { width: 55%; }
+.mrw-width-60 { width: 60%; }
+.mrw-width-65 { width: 65%; }
+.mrw-width-70 { width: 70%; }
+.mrw-width-75 { width: 75%; }
+.mrw-width-80 { width: 80%; }
+.mrw-width-85 { width: 85%; }
+.mrw-width-90 { width: 90%; }
+.mrw-width-95 { width: 95%; }
+.mrw-width-100 { width: 100%; }
+.mrw-center { text-align: center !important; }
+.mrw-right { text-align: right !important; }
+.mrw-left { text-align: left !important; }
+
+@media screen and (min-width: 800px) {
+    .mrw-tr > div { padding: 10px; }
+}
