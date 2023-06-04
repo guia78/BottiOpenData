@@ -563,92 +563,14 @@ function InfoTrafficoAutostradaFvg()
  * 
  * @return string
  */
-function scrapeInfoTrafficoAutostradaFvg($testo,$txt_inizio,$txt_fine,$offset){
+function scrapeInfoTrafficoAutostradaFvg($testo,$txt_inizio,$txt_fine,$offset)
+{
     $start = strpos($testo,$txt_inizio);
     $long = strlen($txt_inizio);
     $start = $start+$long;
     $end = strpos($testo,$txt_fine,$start);
     $forReturn = substr($testo,$start,$end-$start+$offset);
     return $forReturn;
-}
-
-/*
- * Function twitterInfo()
- * For extract txt from Twitter
- * @return string
-*/
-
-function twitterInfo($link){
-	$userTwitter = $link[1];
-	$chat_id = $link[2];
-	$reply_markup = $link[3];
-	$user_id =  $link[4];
-	/*
-	 * Variable key, token Twitter
-	*/
-	$tableParmExit = dbParamExtraction('SoftDesc = "Twitter" AND Active = "1"');
-	foreach ($tableParmExit as $param) {
-		switch ($param['Code']) {
-			case "token":
-				$twitterToken = $param['Param'];
-				break;
-			case "token_secret":
-				$twitterTokenSecret = $param['Param'];
-				break;
-			case "key":
-				$twitterKey = $param['Param'];
-				break;
-			case "key_secret":
-				$twitterKeySecret = $param['Param'];
-				break;
-		}  
-	}
-	$settings = array(
-	   'oauth_access_token' => $twitterToken,
-	   'oauth_access_token_secret' => $twitterTokenSecret,
-	   'consumer_key' => $twitterKey,
-	   'consumer_secret' => $twitterKeySecret
-	);
-
-	//Scegli il metodo GET
-	$requestMethod = "GET";
-	
-	//Per recuperare i tweet bisogna richiamare user_timeline.json
-	$url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-	
-	/*
-	 * Con questa istruzione impostiamo l'username
-	 * dell'account Twitter dal quale vogliamo
-	 * recuperare i tweet (@cnn) ed anche il numero
-	 * di tweet (10)
-	 */
-	
-	$getfield = '?screen_name='.$userTwitter.'&count=10';
-	
-	//Crea una istanza di TwitterAPIExchange
-	$twitter = new TwitterAPIExchange($settings);
-	
-	/*
-	 * Utilizza questi tre metodi in forma di
-	 * "method chaining" per passare le informazioni
-	 * necessarie alla classe e recuperare i tweet
-	 */
-	$user_timeline_json = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
-	
-	//Stampa la risposta JSON e termina lo script
-	$user_timeline = json_decode($user_timeline_json, true);
-	//Setting output and variable
-	$outPutTwitter="";
-	$reversed = array_reverse($user_timeline);
-	
-	foreach ($reversed as $tweetLine){
-	  $whenTwitter = date('j.n.Y', strtotime($tweetLine['created_at']));
-	  $outPutTwitter = $outPutTwitter.$whenTwitter." - ".$tweetLine['text']."\n\n";
-	}
-    //Send Message
-    apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $outPutTwitter, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
-    dbTrackerInsert($chat_id,$user_id,'segue',$outPutTwitter);
-    return "Lettura dati terminata"; 
 }
 
 /*
@@ -924,7 +846,7 @@ function scrapeAlboPretorioFvgMid($testo)
         $inizio = $inizio+0;
         $fine = strpos($testo,$txt_f,$inizio);
         if(empty ($fine)){
-                return $alboFinal;
+            return $alboFinal;
         } else {
             $alboPartial1 = substr($testo,$inizio,$fine-$inizio);
             //Parte dato
