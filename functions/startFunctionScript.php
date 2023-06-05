@@ -1,7 +1,7 @@
 <?php
 /*
  * All system for all Function of [Bot]Ti all page
- * Copyright (c) 2018-2025 Guion Matteo
+ * Copyright (c) 2018-2030 Guion Matteo
  */
  
 require_once ('functions/function.php');

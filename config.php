@@ -14,4 +14,4 @@ $GLOBALS['mysql_host']='localhost'; //Ip server Mysql
 $GLOBALS['mysql_port']='3306';      //Port server Mysql
 $GLOBALS['mysql_user']='admin';     //User database
 $GLOBALS['mysql_pass']='PASSWORD';//Password database
-$GLOBALS['mysql_db']='DB';    //Don't change
+$GLOBALS['mysql_db']='telegram';    //Don't change

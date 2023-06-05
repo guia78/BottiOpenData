@@ -500,46 +500,9 @@ function Photo($anyId)
 }
 
 /*
- * Function InfoTrafficoFvg
- * Fonte: http://www.fvgstrade.it/
- * 
- *  @return string
- */
-
-function InfoTrafficoFvg()
-{
-    $linkNew = "http://www.fvgstrade.it/";
-    $txt = file_get_contents($linkNew);
-    $txt_i = "<div id=\"Panel_OrdinanzeLista\" class=\"ordinanzeItemsHome\">";
-    $txt_f = "<div class=\"home_colonna3 grid_8\">";
-    $off = "0";
-    // To Clean Text-HTML and convet character
-    $letto = scrapeInfoTrafficoFvg($txt,$txt_i,$txt_f,$off);
-    $letto = strip_tags(str_replace('<', ' <', $letto));
-    $letto = preg_replace('/\\s{2,}/',' ',$letto);
-    $letto = str_replace("vedi sulla mappa","\n",$letto);
-    return $letto."\n\nFonte: http://www.fvgstrade.it";
-}
-
-/*
- * Function IscrapeInfoTrafficoFvg
- * Fonte: http://www.fvgstrade.it/
- * 
- *  @return string
- */
-function scrapeInfoTrafficoFvg($testo,$txt_inizio,$txt_fine,$offset)
-{
-    $start = strpos($testo,$txt_inizio);
-    $long = strlen($txt_inizio);
-    $start = $start+$long;
-    $end = strpos($testo,$txt_fine,$start);
-    $forReturn = substr($testo,$start,$end-$start+$offset);
-    return $forReturn;
-}
-
-/*
  * Function InfoTrafficoAutostradaFvg()
- * Fonte: https://infotraffico.autovie.it/
+ * Function scrape the info to web page
+ * Source: https://www.infoviaggiando.it/it
  * 
  * @return string
  */

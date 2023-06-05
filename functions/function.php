@@ -604,7 +604,7 @@ function controlUserState($indirizzo)
     $risultato = curl_exec($ch);
     curl_close($ch);
     // output di Telegram site when the result is OK
-    //$controllo = "{\"ok\":false,\"error_code\":403,\"description\":\"[Error]: Bot was kicked from a chat\"}";
+    // $controllo = "{\"ok\":false,\"error_code\":403,\"description\":\"[Error]: Bot was kicked from a chat\"}";
     $controllo = "Request has failed with error 403: Bot was blocked by the user";
     return (array($risultato, $controllo));
 }
