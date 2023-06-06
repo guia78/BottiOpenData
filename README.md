@@ -15,7 +15,7 @@ Date: 01/05/2023
 
 ### Virtual disk with VmWare Player ###
 
-* Use the vmware player and the virtual disk. Download from: www.botti.guion78.com the virtual machine for run [Bot]Ti in 5 minutes and change the file installation and DB.
+* Use the vmware player and the virtual disk. Download from: www.botti.guion78.com the virtual machine for run [Bot]Ti in 10 minutes and change the file installation and DB.
 
 ### Contribution guidelines ###
 
