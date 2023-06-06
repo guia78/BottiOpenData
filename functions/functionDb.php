@@ -1365,7 +1365,7 @@ function dbArtSelect($lat, $lon, $dist)
 {
     try {
         $conn=getDbConnection();
-		$sql = "SELECT * FROM(SELECT IMG,BENE_CULTURALE,LOCALIZZAZIONE,CONTENITORE,LAT,LON, (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(TmpArt.LAT) , 2 ) + POW( RADIANS('$lon') - RADIANS(TmpArt.LON) , 2 ) ) , 3 ))AS dis FROM (SELECT IMG,BENE_CULTURALE,LOCALIZZAZIONE,CONTENITORE,LAT,LON FROM `Ext_Art` )as TmpArt ORDER BY `dis`)as TmpArtOrder where TmpArtOrder.dis < $dist LIMIT 80";
+	$sql = "SELECT * FROM(SELECT IMG,BENE_CULTURALE,LOCALIZZAZIONE,CONTENITORE,LAT,LON, (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(TmpArt.LAT) , 2 ) + POW( RADIANS('$lon') - RADIANS(TmpArt.LON) , 2 ) ) , 3 ))AS dis FROM (SELECT IMG,BENE_CULTURALE,LOCALIZZAZIONE,CONTENITORE,LAT,LON FROM `Ext_Art` )as TmpArt ORDER BY `dis`)as TmpArtOrder where TmpArtOrder.dis < $dist LIMIT 80";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $tableArt=array();
@@ -1388,7 +1388,7 @@ function dbWiFiSelect($lat, $lon, $dist)
 {
     try {
         $conn=getDbConnection();
-		$sql = "SELECT * FROM(SELECT Name, Latitude, Longitude, Note, (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(TmpWifi.Latitude) , 2 ) + POW( RADIANS('$lon') - RADIANS(TmpWifi.Longitude) , 2 ) ) , 3 ))AS dis FROM (SELECT Name, Latitude, Longitude, Note FROM `Ext_fvg_wifi` )as TmpWifi ORDER BY `dis`)as TmpWifiOrder where TmpWifiOrder.dis < $dist";
+        $sql = "SELECT * FROM(SELECT Name, Address, Latitude, Longitude, Note, (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(TmpWifi.Latitude) , 2 ) + POW( RADIANS('$lon') - RADIANS(TmpWifi.Longitude) , 2 ) ) , 3 ))AS dis FROM (SELECT Name, Address, Latitude, Longitude, Note FROM `Ext_fvg_wifi` )as TmpWifi ORDER BY `dis`)as TmpWifiOrder where TmpWifiOrder.dis < $dist";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $tableWifi=array();

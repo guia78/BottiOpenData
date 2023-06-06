@@ -407,11 +407,11 @@ function ArtSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $m
 }
 
 /*
- * Function WifiSearch
- * 
- * @return array of list of Art
+ * Function: WifiSearch
+ * Function for search wifi point FreeWiFi FVG
+ *
+ * @return string
  */
- 
 function WifiSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $message_id, $reply_markup)
 {
     //Setting variable AND Initialize variable
@@ -433,10 +433,10 @@ function WifiSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $
     foreach($tableWifi as $tableExplodeWifi){
         $linkTemp = "http://maps.google.com/maps?daddr=".$tableExplodeWifi["Latitude"].",".$tableExplodeWifi["Longitude"]."&amp;ll=";
         $linkMaps = $linkTemp;
-        $listWifi .= $tableExplodeWifi["Name"]."  - \n Loc: ".$linkMaps."\n\n";
+        $listWifi .= $tableExplodeWifi["Address"]."\n"."Point: ".$linkMaps."\n\n";
     }
     if(empty($tableWifi)){
-            return "Non ci sono punti wifi intorno a te";
+        return "Non ci sono punti wifi intorno a te. \n Fonte: https://bit.ly/2Qlimtl";
     }else{
         truncateMessage($listWifi, $chat_id, $user_id, $reply_markup);
         return "Lettura dati terminata. \n Fonte: https://bit.ly/2Qlimtl";
@@ -462,9 +462,9 @@ function Photo($anyId)
     // Extract key Flickr
     $tableParmExit = dbParamExtraction('SoftDesc = "Flickr" AND Active = "1"');
     foreach ($tableParmExit as $param) {
-            if ($param['Code'] == "key"){
-                    $flickrKey = $param['Param'];
-            }  
+        if ($param['Code'] == "key"){
+            $flickrKey = $param['Param'];
+        }  
     }
     // Variable Flickr
     $tag = $oneParam; //Tag to search
@@ -517,7 +517,7 @@ function InfoTrafficoAutostradaFvg()
     $letto = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
     $letto = strip_tags($letto, '<strong>');
     $letto = preg_replace('/\\s{2,}/',"\n",$letto);
-    return $letto."\n\nFonte: https://infotraffico.autovie.it/";
+    return $letto."\n\nFonte: Info viaggiando delle Autostrade Autovie Venete.";
 }
 
 /*

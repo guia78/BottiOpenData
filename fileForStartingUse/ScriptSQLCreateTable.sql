@@ -172,6 +172,7 @@ CREATE TABLE `Ext_fvg_wifi` (
   `ID` int NOT NULL,
   `NumIDinternal` int DEFAULT NULL,
   `Name` text,
+  `Address` varchar(255) DEFAULT NULL,
   `Latitude` varchar(255) DEFAULT NULL,
   `Longitude` varchar(255) DEFAULT NULL,
   `Note` text

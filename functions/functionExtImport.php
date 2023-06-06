@@ -14,7 +14,7 @@ Ics('https://www.anteprimasagre.it/?plugin=all-in-one-event-calendar&controller=
 Ics ('http://zerowastefvg.it/events.ics', '@zerowastefvg', '0', '0');
 
 /* Import also information into DB */
-WiFiFVG('http://www.insiel.it/cms/system/modules/it.insiel.sito/pages/fvg-wifi/json.jsp');
+WiFiFVG('https://www.insiel.it/dati/fvgwifi.json'); // New json may 2023
 farmOnlineFVGExt('https://sapi.sanita.fvg.it/farmacie/orario?APID=PM3EF4Q9CSNFJGW0LSSDVFBM81NLPGV17TSZ2XEAGY2VDQJNNF6T0HCUGLUOVZ3K');
 ?>
 <p>Aggiornamento banca dati avvenuta con successo.</p>

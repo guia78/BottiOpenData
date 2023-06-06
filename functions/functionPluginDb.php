@@ -10,9 +10,10 @@
  * Function dbIcsInsert
  * Ritorna un array posizionale
  * 
- * @return type Array 
+ * @return 0 
  */
-function dbIcsInsert($uid, $name, $desc, $loc, $disc, $dateS, $dateE, $url, $contact, $sourceSite, $authorized, $function){
+function dbIcsInsert($uid, $name, $desc, $loc, $disc, $dateS, $dateE, $url, $contact, $sourceSite, $authorized, $function)
+{
     try {
         $conn=getDbConnection();
         $sql = "INSERT INTO Ext_ics_event SET UID=:uid, Name=:name, Description=:desc, Local=:loc,   District=:disc, DataStart=:dateS, DataEnd=:dateE, Url=:url, Contact=:contact, Source=:sourceSite, Visible=:authorized, IdFunctionCollegate=:function";
@@ -40,7 +41,7 @@ function dbIcsInsert($uid, $name, $desc, $loc, $disc, $dateS, $dateE, $url, $con
  * Function dbIcsDeleteAll
  * Remove alla record of table
  * 
- * @return type Number
+ * @return 0
  */
 function dbExtDeleteAll()
 {
@@ -60,17 +61,19 @@ function dbExtDeleteAll()
 
 /**
  * Function dbWifiInsert
- * Ritorna un array posizionale
+ * Function for insert in table the wifi point FVG
  * 
- * @return type Array 
+ * @return 0 
  */
-function dbWiFiInsert($id, $wifiName, $wifiLat, $wifiLon){
+function dbWiFiInsert($id, $wifiName, $wifiAddress, $wifiLat, $wifiLon)
+{
     try {
         $conn=getDbConnection();
-        $sql = "INSERT INTO Ext_fvg_wifi SET  NumIDinternal=:id, Name=:wifiName, Latitude=:wifiLat, Longitude=:wifiLon";
+        $sql = "INSERT INTO Ext_fvg_wifi SET  NumIDinternal=:id, Name=:wifiName, Address=:wifiAddress, Latitude=:wifiLat, Longitude=:wifiLon";
         $stmt = $conn->prepare($sql);
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':wifiName', $wifiName, PDO::PARAM_STR);	
+	$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':wifiName', $wifiName, PDO::PARAM_STR);
+	$stmt->bindValue(':wifiAddress', $wifiAddress, PDO::PARAM_STR);		
         $stmt->bindValue(':wifiLat', $wifiLat, PDO::PARAM_STR);
         $stmt->bindValue(':wifiLon', $wifiLon, PDO::PARAM_STR);
         $stmt->execute();
@@ -82,23 +85,24 @@ function dbWiFiInsert($id, $wifiName, $wifiLat, $wifiLon){
 
 /**
  * Function dbPharmaFvgInsert
- * Ritorna un array posizionale
+ * Function for insert in table the pharma point FVG
  * 
- * @return type Array 
+ * @return 0 
  */
-function dbPharmaFvgInsert($azName, $azID, $azBusinessName, $azCity, $azAdress, $azLon, $azLat, $azPhone){
+function dbPharmaFvgInsert($azName, $azID, $azBusinessName, $azCity, $azAdress, $azLon, $azLat, $azPhone)
+{
     try {
         $conn=getDbConnection();
         $sql = "INSERT INTO Ext_fvg_pharmacies SET name=:azName, idPharmFvg=:azID, businessName=:azBusinessName, city=:azCity, address=:azAdress, longitude=:azLon, latitude=:azLat, phone=:azPhone";
         $stmt = $conn->prepare($sql);
-		$stmt->bindValue(':azName', $azName, PDO::PARAM_STR);
-		$stmt->bindValue(':azID', $azID, PDO::PARAM_INT);
-		$stmt->bindValue(':azBusinessName', $azBusinessName, PDO::PARAM_STR);
-		$stmt->bindValue(':azCity', $azCity, PDO::PARAM_STR);
-		$stmt->bindValue(':azAdress', $azAdress, PDO::PARAM_STR);
-		$stmt->bindValue(':azLon', $azLon, PDO::PARAM_STR); 
-		$stmt->bindValue(':azLat', $azLat, PDO::PARAM_STR); 
-		$stmt->bindValue(':azPhone', $azPhone, PDO::PARAM_STR);
+            $stmt->bindValue(':azName', $azName, PDO::PARAM_STR);
+            $stmt->bindValue(':azID', $azID, PDO::PARAM_INT);
+            $stmt->bindValue(':azBusinessName', $azBusinessName, PDO::PARAM_STR);
+            $stmt->bindValue(':azCity', $azCity, PDO::PARAM_STR);
+            $stmt->bindValue(':azAdress', $azAdress, PDO::PARAM_STR);
+            $stmt->bindValue(':azLon', $azLon, PDO::PARAM_STR); 
+            $stmt->bindValue(':azLat', $azLat, PDO::PARAM_STR); 
+            $stmt->bindValue(':azPhone', $azPhone, PDO::PARAM_STR);
         $stmt->execute();
     } catch (Exception $ex) {
         return $ex->getMessage();
@@ -108,17 +112,18 @@ function dbPharmaFvgInsert($azName, $azID, $azBusinessName, $azCity, $azAdress, 
 
 /**
  * Function dbPharmaHourFvgInsert
- * Ritorna un array posizionale
+ * Function for insert in table the pharma hour FVG
  * 
- * @return type Array 
+ * @return 0 
  */
 
-function dbPharmaHourFvgInsert($azID, $pharmDa, $pharmA, $pharmType){
+function dbPharmaHourFvgInsert($azID, $pharmDa, $pharmA, $pharmType)
+{
     try {
         $conn=getDbConnection();
         $sql = "INSERT INTO Ext_fvg_pharmacies_hour SET idPharmFvg=:azID, from0=:pharmDa, until0=:pharmA, type0=:pharmType";
         $stmt = $conn->prepare($sql);
-		$stmt->bindValue(':azID', $azID, PDO::PARAM_INT);
+	$stmt->bindValue(':azID', $azID, PDO::PARAM_INT);
         $stmt->bindValue(':pharmDa', $pharmDa, PDO::PARAM_STR);	
         $stmt->bindValue(':pharmA', $pharmA, PDO::PARAM_STR);
         $stmt->bindValue(':pharmType', $pharmType, PDO::PARAM_STR);
