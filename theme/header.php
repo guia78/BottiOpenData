@@ -102,8 +102,8 @@
 				  <?php } else { ?>
 				  <li><a href="index.php">Home page [Bot]Ti</a></li>
 				  <?php }  ?>			              			              
-						  </ul>
-						  </nav><!-- #nav-menu-container -->		    		
+                                  </ul>
+                                  </nav><!-- #nav-menu-container -->		    		
 				</div>
 			</div>
 		  </header>
