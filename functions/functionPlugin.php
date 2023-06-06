@@ -399,10 +399,10 @@ function ArtSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $m
         $listArt .= $tableExplodeArt["BENE_CULTURALE"]."  - ".$elementi[3]." - ".$tableExplodeArt["CONTENITORE"]." - ".$linkArt."\n Loc: ".$linkMaps."\n\n";
     }
     if(empty($tableArt)){
-        return "Non ci sono opere interessanti intorno a te";
+        return "Non ci sono opere interessanti intorno a te.";
     }else{
         truncateMessage($listArt, $chat_id, $user_id, $reply_markup);
-        return "Lettura dati terminata";
+        return "Lettura dati terminata. Fonte Ministero Beni culturali.";
     }
 }
 
