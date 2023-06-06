@@ -6,8 +6,9 @@ Date: 01/05/2023
 
 * Telegram Bot
 * Version: 1.0.0
-* name: [Bot]Ti
+* Name: [Bot]Ti
 * Code based from {S}bot version 0.54.0 (https://github.com/opensipa/sbot)
+* Theme source: https://colorlib.com/
 
 ### How do I get set up? ###
 
