@@ -100,8 +100,8 @@ function StripSingleTagCont($tag, $string) {
 */
 function Ore()
 {
-    $houre = "Ora esatta: ".date("j F Y, H:i:s", time());
-    return $houre;
+    $hours = "Ora esatta: ".date("j F Y, H:i:s", time());
+    return $hours;
 }
 
 /*
@@ -136,21 +136,21 @@ function Setting($also)
     $chatIdSet = $also[3];
     $date = dbServiceControl($chatIdSet, $typeSet);
     if (empty($date)){
-		//For insert service one time
-		$error = dbServiceInsert($chatIdSet, $typeSet, $valueSet);
-		if ($error == 0){
-			return "Settaggio aggiornato correttamente.";
-		}else{
-			return "Aggiornamento non avvenuto, ritenta mi spiace";
-		}
-	}else{
-		//For update service
-		$error = dbServiceUpdate($chatIdSet, $typeSet, $valueSet);
-		if ($error == 0){
-			return "Settaggio aggiornato correttamente.";
-		}else{
-			return "Aggiornamento non avvenuto, ritenta mi spiace";
-		}
+        //For insert service one time
+        $error = dbServiceInsert($chatIdSet, $typeSet, $valueSet);
+        if ($error == 0){
+            return "Settaggio aggiornato correttamente.";
+        }else{
+            return "Aggiornamento non avvenuto, ritenta mi spiace";
+        }
+    }else{
+        //For update service
+        $error = dbServiceUpdate($chatIdSet, $typeSet, $valueSet);
+        if ($error == 0){
+            return "Settaggio aggiornato correttamente.";
+        }else{
+            return "Aggiornamento non avvenuto, ritenta mi spiace";
+        }
     }
 }
 
@@ -431,15 +431,15 @@ function WifiSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $
     $tableWifi = dbWiFiSelect($latitude, $longitude, $distanceSearch);
     $listWifi = "";
     foreach($tableWifi as $tableExplodeWifi){
-            $linkTemp = "http://maps.google.com/maps?daddr=".$tableExplodeWifi["Latitude"].",".$tableExplodeWifi["Longitude"]."&amp;ll=";
-            $linkMaps = $linkTemp;
-            $listWifi .= $tableExplodeWifi["Name"]."  - \n Loc: ".$linkMaps."\n\n";
+        $linkTemp = "http://maps.google.com/maps?daddr=".$tableExplodeWifi["Latitude"].",".$tableExplodeWifi["Longitude"]."&amp;ll=";
+        $linkMaps = $linkTemp;
+        $listWifi .= $tableExplodeWifi["Name"]."  - \n Loc: ".$linkMaps."\n\n";
     }
     if(empty($tableWifi)){
             return "Non ci sono punti wifi intorno a te";
     }else{
-            truncateMessage($listWifi, $chat_id, $user_id, $reply_markup);
-            return "Lettura dati terminata. \n Fonte: https://bit.ly/2Qlimtl";
+        truncateMessage($listWifi, $chat_id, $user_id, $reply_markup);
+        return "Lettura dati terminata. \n Fonte: https://bit.ly/2Qlimtl";
     }
 }
 
@@ -588,17 +588,17 @@ function PsOnlineFVG($variable)
             $numDP = count($dpOnline);
             //Department
             for($x=0; $x<$numDP; $x++){
-                    $color = '';
-                    $colorOnline = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'];
-                    $numColor = count($colorOnline);
-                    for($y=0; $y<$numColor; $y++){
-                            $colorDescription = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'][$y]['descrizione'];
-                            $color .= "<b>".$colorDescription."</b>\n";
-                            //Information at state of code color
-                            $infoColor = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'][$y]['situazionePazienti'];
-                            $color .= "(In attesa: ".$infoColor['numeroPazientiInAttesa']." - In visita: ".$infoColor['numeroPazientiInVisita'].")\n(Tempo attesa: ".$infoColor['mediaAttesa'].")\n";
-                    }
-                    $dpOnLineName .= "# ".$outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['descrizione']." # \n".$color."\n";
+                $color = '';
+                $colorOnline = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'];
+                $numColor = count($colorOnline);
+                for($y=0; $y<$numColor; $y++){
+                    $colorDescription = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'][$y]['descrizione'];
+                    $color .= "<b>".$colorDescription."</b>\n";
+                    //Information at state of code color
+                    $infoColor = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'][$y]['situazionePazienti'];
+                    $color .= "(In attesa: ".$infoColor['numeroPazientiInAttesa']." - In visita: ".$infoColor['numeroPazientiInVisita'].")\n(Tempo attesa: ".$infoColor['mediaAttesa'].")\n";
+                }
+                $dpOnLineName .= "# ".$outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['descrizione']." # \n".$color."\n";
             }
             $psOnLineName .= $dpOnLineName;
         }
@@ -649,17 +649,17 @@ function Ssm()
         $j=$bodyInfo[$i];
         // Control if full
         if($j['free']==0){
-                $ssmState='PIENO';
+            $ssmState="<b>PIENO</b>";
         }else{
-                $ssmState='LIBERO';
+            $ssmState="LIBERO";
         }
         if($j['enabled']==1){
-                $outPutFunction = $outPutFunction."> <b>".$j['extensioname']."</b> - ".$ssmState." ".$j['free'].'/'.$j['total']."\n";
+             $outPutFunction = $outPutFunction."> <b>".$j['extensioname']."</b> - ".$j['free'].' su '.$j['total']." (".$ssmState.")\n";
         }
     }
     $date = strtotime($outPut['response']['body']['general']['lastreceive']); 
     $newDate = date('d-m-Y H:i', $date);
-    $outPutFunction = $outPutFunction.'<b>Aggiornamento:</b> '.$newDate;
+    $outPutFunction = "Fonte: Sistema Sosta Integrata di Udine"."\n\n".$outPutFunction."\n<b>Aggiornato:</b> ".$newDate;
     
     // close curl resource to free up system resources
     curl_close($ch);
