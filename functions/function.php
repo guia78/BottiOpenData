@@ -236,7 +236,7 @@ function processMessage($message)
                                     $adressPharma = $tableExplodePharma["address"];
                                     $comunePharma = $tableExplodePharma["city"];
                                     $disPharma = round($tableExplodePharma["dis"], 0);
-                                    $closePharma = date("d-m-Y H:m", strtotime($tableExplodePharma["until0"]));
+                                    $closePharma = date("d-m-Y H:i", strtotime($tableExplodePharma["until0"]));
                                     $listPharma = ">> ". $comunePharma ." (" . $disPharma . "km)\n" . $namePharma . "\n" . $adressPharma . "\nAperta fino: " . $closePharma. "\n" . $linkMaps ."\n\n" . $listPharma;
                             }
                             truncateMessage($listPharma, $chat_id, $user_id, $reply_markup);
