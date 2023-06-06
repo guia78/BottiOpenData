@@ -1284,7 +1284,8 @@ function dbLocalizationTmpDelete($id)
 
 /**
  * Function dbGasolineSelect
- * Function for select ALL Gasoline Registry and Price from distance
+ * Select ALL Gasoline Registry and Price from distance
+ * Or Query: SELECT * FROM viewGasolinePriceRegistry WHERE TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist GROUP BY Gestore,descCarburante ORDER BY descCarburante,prezzo LIMIT 50
  * 
  * @return type Array 
  */
@@ -1294,9 +1295,9 @@ function dbGasolineSelect($lat, $lon, $dist)
         $conn=getDbConnection();
         $sql ="(SELECT * FROM viewGasolinePriceRegistry WHERE descCarburante='Benzina' AND (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist) AND dtComu > DATE_SUB(current_date(), INTERVAL 3 DAY) ORDER BY prezzo LIMIT 5)
         UNION
-        (SELECT * FROM viewGasolinePriceRegistry WHERE descCarburante='Gasolio' AND 'dtComu' > DATE_SUB(current_date(), INTERVAL 2 DAY) AND(TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist) AND dtComu > DATE_SUB(current_date(), INTERVAL 3 DAY) ORDER BY prezzo LIMIT 5)
+        (SELECT * FROM viewGasolinePriceRegistry WHERE descCarburante='Gasolio' AND (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist) AND dtComu > DATE_SUB(current_date(), INTERVAL 3 DAY) ORDER BY prezzo LIMIT 5)
         UNION
-        (SELECT * FROM viewGasolinePriceRegistry WHERE descCarburante='GPL' AND 'dtComu' > DATE_SUB(current_date(), INTERVAL 2 DAY) AND(TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist) AND dtComu > DATE_SUB(current_date(), INTERVAL 3 DAY) ORDER BY prezzo LIMIT 5)";
+        (SELECT * FROM viewGasolinePriceRegistry WHERE descCarburante='GPL' AND (TRUNCATE ( 6363 * sqrt( POW( RADIANS('$lat') - RADIANS(Latitudine) , 2 ) + POW( RADIANS('$lon') - RADIANS(Longitudine) , 2 ) ) , 3 ) < $dist) AND dtComu > DATE_SUB(current_date(), INTERVAL 3 DAY) ORDER BY prezzo LIMIT 5)";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $tableGasoline=array();

@@ -275,7 +275,7 @@ function GasolineSearch($longitude, $latitude, $chat_id, $first_name_id, $messag
     $positionRecive = "Ti trovi presso: ";
     $coordinate = array($latitude, $longitude);
     $distanceSearch = "10";
-    $messageSend = "Sto calcolando i distributori nel raggio di ".$distanceSearch." km.";
+    $messageSend = "Sto calcolando i distributori nel raggio di ".$distanceSearch." km. \nFonte Ministero delle Imprese e del Made in Italy.";
     dbLogTextOn($chat_id,$first_name_id,$message_id,'<br><a href="'.$link.'" target="_blank">'.$link.'</a>');
     //reverse coordinate to address
     $address = street($coordinate);
