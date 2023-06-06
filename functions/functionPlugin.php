@@ -596,7 +596,7 @@ function PsOnlineFVG($variable)
                             $color .= "<b>".$colorDescription."</b>\n";
                             //Information at state of code color
                             $infoColor = $outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['codiciColore'][$y]['situazionePazienti'];
-                            $color .= "(In attesa ".$infoColor['numeroPazientiInAttesa'].")\n(Tempo attesa ".$infoColor['mediaAttesa'].")\n";
+                            $color .= "(In attesa: ".$infoColor['numeroPazientiInAttesa']." - In visita: ".$infoColor['numeroPazientiInVisita'].")\n(Tempo attesa: ".$infoColor['mediaAttesa'].")\n";
                     }
                     $dpOnLineName .= "# ".$outPut['aziende'][$i]['prontoSoccorsi'][$j]['dipartimenti'][$x]['descrizione']." # \n".$color."\n";
             }
@@ -611,7 +611,7 @@ function PsOnlineFVG($variable)
     // close curl resource to free up system resources
     curl_close($ch);
     
-    return "Lettura dati terminata.";
+    return "Lettura dati terminata. Fonte: https://servizionline.sanita.fvg.it/psonline/#/index";
 }
 
 
