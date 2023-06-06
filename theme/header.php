@@ -8,7 +8,7 @@
 		<!-- Author Meta -->
 		<meta name="author" content="Matteo Guion">
 		<meta name="email" content="info[at]guion78[dot]com">
-		<meta name="copyright" content="Copyright 2018-2025 © Matteo Guion">
+		<meta name="copyright" content="Copyright 2023-2030 © Matteo Guion">
 		<!-- Meta Description -->
 		<meta name="description" content="Piattaforma per la gestione dei Bot">
 		<!-- Meta Keyword -->
