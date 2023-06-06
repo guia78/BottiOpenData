@@ -1,6 +1,6 @@
 #!/bin/sh
 # Update DB for Pharmacies http://www.dati.salute.gov.it/dati/
-
+# Update May 2023
 
 # define database connectivity
 _db="DB_Telegram"

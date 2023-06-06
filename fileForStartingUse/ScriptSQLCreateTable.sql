@@ -1,5 +1,5 @@
 -- Script for first install
--- Versione PHP: 7.4.3 or higher
+-- Versione PHP: 7.4.0 or higher
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

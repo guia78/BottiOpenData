@@ -1,6 +1,6 @@
 #!/bin/sh
 # Update DB for Fuel https://www.mimit.gov.it/index.php/it/open-data/elenco-dataset/carburanti-prezzi-praticati-e-anagrafica-degli-impianti
-
+# Update May 2023
 
 # define database connectivity
 _db="DB_Telegram"
