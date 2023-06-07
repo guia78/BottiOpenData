@@ -59,6 +59,7 @@ function initSendAnswer($chat_id,$first_name_id,$message_id,$text)
  * This function is not complete
  * Next step implement to send e-mail for alert the 
  * 
+ * @return string
  */
 function sendMail($subject, $corpo_messaggio)
 {
@@ -285,9 +286,9 @@ $menu = array(
 /*
  * randomFile
  * Function for create the new file everytime (problem cache file telegram app)
- * 
+ *  Function for downalod a File and rename (from site with static image)
  * Code from: http://free-script.it/post/Script_php_Copiare_un_file_remoto_sul_proprio_server-62.htm
- * Function for downalod a File and rename (from site with static image) 
+ * 
  * @return url for download a save file
  */
 
