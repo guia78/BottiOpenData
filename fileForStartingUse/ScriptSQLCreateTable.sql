@@ -479,7 +479,6 @@ INSERT INTO `software_config_button` (`ID`, `Number`, `Level`, `LevelIndoor`, `I
 (86, 202, 1, NULL, 0, 'Setting', 'Function', '/zeroAggiornamenti', 'Setting|Message|0', 1, '', '0000-00-00 00:00:00'),
 (87, 203, 1, NULL, 0, 'Setting', 'Function', '/tuttiAggiornamenti', 'Setting|Message|1', 1, '', '0000-00-00 00:00:00'),
 (89, 251, 1, NULL, 0, 'Servizi', 'Normal', '/ServiziConPosizione', 'Al momento sono disponibili questi servizi basati sulla TUA posizione:\r\n\r\nStazioni di rifornimento con prezzo, nelle tue vicinanze:\r\nFUEL PUMP /DistributoriLocali\r\nBar/Osterie/Trattorie/locali/Gelaterie nelle vicinanze:\r\nFRENCH FRIES /Commercianti\r\nBeni culturali nelle vicinanze:\r\nCHURCH /Arte\r\nPunti Wifi gratis\r\nANTENNA WITH BARS /Wifi\r\nFarmacie nelle vicinanze:\r\nPILL /FarmacieLocali \r\nFarmacie APERTE ora:\r\nPILL /FarmaciaAperta\r\n\r\ndopo aver selezionato il servizio puoi inviare la posizione con il pulsante PAPERCLIP.', 1, '', '0000-00-00 00:00:00'),
-(90, 252, 1, NULL, 0, 'Servizi', 'Normal', '/FarmacieDiTurno', 'http://farmasire.it/', 1, '', '0000-00-00 00:00:00'),
 (92, 109, 1, NULL, 0, 'Meteo Fvg', 'Normal', '/Temperature', 'Temperature:\r\n\r\n/FvgTemperatureAttuale (attuale)\r\n\r\n/FvgTemperatureMIN (minima)\r\n\r\n/FvgTemperatureMAX (massima)', 1, '', '0000-00-00 00:00:00'),
 (93, 253, 1, NULL, 0, 'Servizi', 'Function', '/FarmacieLocali', 'serviceTmp|Farmacia', 1, '', '0000-00-00 00:00:00'),
 (94, 254, 1, NULL, 0, 'Servizi', 'Function', '/DistributoriLocali', 'serviceTmp|Gasoline', 1, '', '0000-00-00 00:00:00'),
