@@ -15,5 +15,5 @@
 # |  |  |  |  |
 # *  *  *  *  * user-name command to be executed
 20 8	* * *	root	/home/script/updatePharmacies.sh
-35 8	* * *	root	/home/script/updateFuel.sh
+* 9	* * *	root	/home/script/updateFuel.sh
 0  9	* * *	root	php - q /var/www/directory_install_platform/functions/functionExtImport.php
