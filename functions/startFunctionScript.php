@@ -11,9 +11,10 @@ require_once ('functions/simplepie/autoloader.php');
 require_once ('functions/functionPassword.php');
 require_once ('functions/functionPlugin.php');
 require_once ('functions/functionInit.php');
-require_once ('functions/PHPMailer/src/PHPMailer.php');
-require_once ('functions/PHPMailer/src/SMTP.php');
-require_once ('functions/PHPMailer/src/Exception.php');
+// For new feature (send e-mail and read account Twitter)
+#require_once ('functions/PHPMailer/src/PHPMailer.php');
+#require_once ('functions/PHPMailer/src/SMTP.php');
+#require_once ('functions/PHPMailer/src/Exception.php');
 /*
 * Deprecated
 */
