@@ -442,6 +442,8 @@ function truncateMessage($txtResult, $chat_id, $user_id, $reply_markup)
         $lettoC = $outPut;
         dbTrackerInsert($chat_id,$user_id,'segue',$lettoC);
         apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $lettoC, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
+        //Sleep for time out (error 420 FLOOD) of Telegram
+        sleep(2);
     }else{
         while ($ini<=$lunghezzaLetto){
             if($maxExport+$ini<=$lunghezzaLetto){
@@ -473,6 +475,8 @@ function truncateMessageNoPlugin($txtResult, $chat_id, $user_id, $reply_markup)
     if($lunghezzaLetto<$maxExport){
         $lettoC = $outPut;
         apiRequest("sendMessage", array('chat_id' => $user_id, 'text' => $lettoC, 'parse_mode' => 'HTML', 'disable_web_page_preview' => 'true'));
+        //Sleep for time out (error 420 FLOOD) of Telegram
+        sleep(2); 
     }else{
         while ($ini<=$lunghezzaLetto){
             if($maxExport+$ini<=$lunghezzaLetto){

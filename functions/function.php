@@ -392,6 +392,7 @@ function processMessage($message)
  * apiRequest
  * Function to connect Telgram with API
  * 
+ * @return string
 */
 
 function apiRequest($method, $parameters)
@@ -468,17 +469,18 @@ function apiRequest($method, $parameters)
  * sendMessage
  * Function for process send message for all users
  * 
+ * @return nothing
  */
 function sendMessage($user_id, $message)
 {
-    //Correzione dei caratteri utf-8 particolari ed inoltre apici
-    //Funzione deprecata -> $message = html_entity_decode($message);
+    // Correction character utf-8 and another particular character
+    // Function deprecated -> $message = html_entity_decode($message);
     $message = str_replace ("&#39;","'" ,$message);
     $message =  emoticonConvert($message);
     $key = createKeyboard($user_id);
     $reply_markup = $key[1];
     $chat_id = $user_id;
-    //Funzione di Send Message
+    // Function send multiple message
     truncateMessageNoPlugin($message, $chat_id, $user_id, $reply_markup);
 }
 
@@ -486,10 +488,11 @@ function sendMessage($user_id, $message)
  * sendMessageChannel
  * Function for process send message to Telegram channel 
  * 
+ * @return nothing
  */
 function sendMessageChannel($user_id, $message)
 {
-    //Correzione dei caratteri utf-8 particolari ed inoltre apici
+    // Correction character utf-8 and another particular character
     $message = html_entity_decode($message);
     $message = str_replace ("&#39;","'" ,$message);
     $message =  emoticonConvert($message);
@@ -503,6 +506,7 @@ function sendMessageChannel($user_id, $message)
  * sendPicture
  * Function for process send photo after upload on server
  * 
+ * @return nothing
  */
 function sendPicture($chat_id, $photo)
 {
@@ -527,6 +531,7 @@ function sendPicture($chat_id, $photo)
  * sendDocument
  * Function for process send documents
  * 
+ * @return nothing
  */
 function sendDocument($chat_id, $document)
 {
@@ -552,7 +557,6 @@ function sendDocument($chat_id, $document)
  * Control state of platform
  * 
  * @return array of state code telegram
- * 
 */ 
 function controlTelgramState()
 {
@@ -612,7 +616,7 @@ function controlUserState($indirizzo)
  * createKeyboard
  * Function for create a normal Keyboard
  * 
- * @return array of keyboard 
+ * @return array
  */
 function createKeyboard($userid)
 {
@@ -648,7 +652,7 @@ function createKeyboard($userid)
  * createArrayKeyboard
  * Function for create a normal Keyboard
  * 
- * @return array of keyboard 
+ * @return array 
  */
 function createArrayKeyboard($Key1, $Key2)
 {
@@ -673,6 +677,12 @@ function createArrayKeyboard($Key1, $Key2)
 	return $reply_markup;
 }
 
+/*
+ * downLoad
+ * Function for donwload file from api telegram
+ * 
+ * @return string 
+ */
 function downLoad($id_file,$ext)
 {
     $ch = curl_init();

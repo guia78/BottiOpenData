@@ -604,8 +604,6 @@ function PsOnlineFVG($variable)
         }
         $outPutFunction = "<b>".$azName."</b>\n".$psOnLineName;
         truncateMessage($outPutFunction, $chat_id, $user_id, $reply_markup);
-        //Sleep for time out (error 400) of Telegram
-        sleep(2);
     }
 	
     // close curl resource to free up system resources
