@@ -38,7 +38,7 @@ function Launcher($chat_id, $reply_markup, $user_id, $param)
 
 /*
  * Function Clean
- * This function clean string for web tag of text
+ * This function clean string for web tag of text or xml/rss
  * 
  * @return string
 */
@@ -168,20 +168,17 @@ function Read($link)
     $reply_markup = $link[3];
     $user_id = $link[4];
     $url_flux_rss = $linkNew;
-    $limite = 30; // number max of Rss
-    $message="Ci sono molti dati da elaborare, ancora un momento!"; //Message to attemp
-
-    // active of class
+    $limite = 30; // Number max of Rss
+    $message="Ci sono molti dati da elaborare, ancora un momento!"; // Message to attemp
+    // Active of class
     $rss = new lastRSS;
-
     // option
-    $rss->cache_dir   = './cache'; // folder for cache
-    $rss->cache_time  = 3600;      // time to live cache (second)
+    $rss->cache_dir   = './cache'; // Folder for cache
+    $rss->cache_time  = 3600;      // Time to live cache (second)
     $rss->date_format = 'd/m/y';   // Date format italian
-    $rss->CDATA       = 'content'; // content tag CDATA
+    $rss->CDATA       = 'content'; // Content tag CDATA
     $outPut = "";
-    $risultato = "";
-
+    $result = "";
     if ($rs = $rss->get($url_flux_rss)){
         for($i=0; $i<$limite; $i++){
             if($i==11){
@@ -198,16 +195,16 @@ function Read($link)
                         $description = $rs['items'][$i]['content:encoded'];
                         $description = Clean($description);
                 }
-                //Short link create
+                // Short link create
                 $shortURL = initShort($weblink);
-                //Concatenated
-                $risultato = "Pubblicato: ".$datePubb."\r\n".$titolo."\r\n".$description."\r\n".$shortURL."\r\n\r\n".$risultato;
+                // Concatenated
+                $result = "Pubblicato: ".$datePubb."\r\n".$titolo."\r\n".$description."\r\n".$shortURL."\r\n\r\n".$result;
             }		
         }
     } else {
-        $risultato = "Non ci sono feed rss per oggi.";
+        $result = "Non ci sono feed rss per oggi.";
     }    
-    truncateMessage($risultato, $chat_id, $user_id, $reply_markup);
+    truncateMessage($result, $chat_id, $user_id, $reply_markup);
     return "Lettura dati terminata.";
 }
 
