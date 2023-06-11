@@ -506,16 +506,18 @@ function Photo($anyId)
  */
 function InfoTrafficoAutostradaFvg()
 {
+    // Setting variable
     $linkNew = "https://www.infoviaggiando.it/it";
     $txt = file_get_contents($linkNew);
     $txt_i = "<div class=\"c-newsticker__text\">";
     $txt_f = "</div>";
     $off = "0";
-     $letto = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
+    
+    $lettRead = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
     // To Clean Text-HTML and convet character
-    $letto = strip_tags($letto, '<strong>');
-    $letto = preg_replace('/\\s{2,}/',"\n",$letto);
-    return $letto."\n\nFonte: Info viaggiando delle Autostrade Autovie Venete.";
+    $lettRead = strip_tags($lettRead, '<strong>');
+    $lettRead = preg_replace('/\\s{2,}/',"\n",$lettRead);
+    return $lettRead."\n\nFonte: Info viaggiando delle Autostrade Autovie Venete.";
 }
 
 /*
