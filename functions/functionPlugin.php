@@ -169,7 +169,7 @@ function Read($link)
     $user_id = $link[4];
     $url_flux_rss = $linkNew;
     $limite = 30; // Number max of Rss
-    $message="Ci sono molti dati da elaborare, ancora un momento!"; // Message to attemp
+    $message="Ci sono molti dati da elaborare, ancora un momento!"; // Message to attempt
     // Active of class
     $rss = new lastRSS;
     // option
@@ -278,7 +278,7 @@ function GasolineSearch($longitude, $latitude, $chat_id, $first_name_id, $messag
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    //send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tableGasoline = dbGasolineSelect($latitude, $longitude, $distanceSearch);
@@ -304,7 +304,7 @@ function PharmaSearch($longitude, $latitude, $chat_id, $first_name_id, $message_
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    //send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tablePharma = dbPharmacieSelect($latitude, $longitude, $distanceSearch);
@@ -330,7 +330,7 @@ function PharmaFvgSearch($longitude, $latitude, $chat_id, $first_name_id, $messa
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    //send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tablePharma = dbPharmacieFvgSelect($latitude, $longitude, $distanceSearch);
@@ -356,7 +356,7 @@ function CommerceSearch($longitude, $latitude, $chat_id, $first_name_id, $messag
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    //send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tableCommerce = dbCommerceSelect($latitude, $longitude, $distanceSearch);
@@ -382,7 +382,7 @@ function ArtSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $m
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    //send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tableArt = dbArtSelect($latitude, $longitude, $distanceSearch);
@@ -423,7 +423,7 @@ function WifiSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    // Send message position and attemp
+    // Send message position and attempt
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tableWifi = dbWiFiSelect($latitude, $longitude, $distanceSearch);
