@@ -8,7 +8,7 @@
  by Vojtech Semecky, webmaster @ webdot . cz
  
  Latest version, features, manual and examples:
- 	http://lastrss.oslab.net/
+ http://lastrss.oslab.net/
 
  ----------------------------------------------------------------------
  LICENSE
