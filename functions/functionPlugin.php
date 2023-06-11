@@ -168,8 +168,9 @@ function Read($link)
     $reply_markup = $link[3];
     $user_id = $link[4];
     $url_flux_rss = $linkNew;
-    $limite = 30; // Number max of Rss
-    $message="Ci sono molti dati da elaborare, ancora un momento!"; // Message to attempt
+    $limitMax = 30;    // Limit superior of number Rss (Attention! flood system telegram, don't change this value)
+    $limitInf = 6; // Limit for send a message of alert long time
+    $message = "Ci sono molti dati da elaborare, ancora un momento!"; // Message to attempt
     // Active of class
     $rss = new lastRSS;
     // option
@@ -180,8 +181,8 @@ function Read($link)
     $outPut = "";
     $result = "";
     if ($rs = $rss->get($url_flux_rss)){
-        for($i=0; $i<$limite; $i++){
-            if($i==11){
+        for($i=0; $i<$limitMax; $i++){
+            if($i==$limitInf){
                 apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $message, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
             }
             $titolo = $rs['items'][$i]['title'];
@@ -199,6 +200,9 @@ function Read($link)
                 $shortURL = initShort($weblink);
                 // Concatenated
                 $result = "Pubblicato: ".$datePubb."\r\n".$titolo."\r\n".$description."\r\n".$shortURL."\r\n\r\n".$result;
+            } else {
+                // Exit cicle
+                $limit = $i+1;
             }		
         }
     } else {
