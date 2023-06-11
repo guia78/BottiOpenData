@@ -202,7 +202,7 @@ function Read($link)
                 $result = "Pubblicato: ".$datePubb."\r\n".$titolo."\r\n".$description."\r\n".$shortURL."\r\n\r\n".$result;
             } else {
                 // Exit cicle
-                $limit = $i+1;
+                $limitMax = $i+1;
             }		
         }
     } else {
