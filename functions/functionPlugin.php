@@ -190,10 +190,10 @@ function Read($link)
                 $weblink = $rs['items'][$i]['link'];
                 $description = $rs['items'][$i]['description'];
                 if ($description != ""){
-                        $description = Clean($description);
+                    $description = Clean($description);
                 }else{
-                        $description = $rs['items'][$i]['content:encoded'];
-                        $description = Clean($description);
+                    $description = $rs['items'][$i]['content:encoded'];
+                    $description = Clean($description);
                 }
                 // Short link create
                 $shortURL = initShort($weblink);
@@ -515,7 +515,8 @@ function InfoTrafficoAutostradaFvg()
     
     $lettRead = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
     // To Clean Text-HTML and convet character
-    $lettRead = strip_tags($lettRead, '<strong>');
+    $lettRead = strip_tags($lettRead, '<br>');
+    $lettRead = str_replace('<br>','\n',$lettRead);
     $lettRead = preg_replace('/\\s{2,}/',"\n",$lettRead);
     return $lettRead."\n\nFonte: Info viaggiando delle Autostrade Autovie Venete.";
 }
