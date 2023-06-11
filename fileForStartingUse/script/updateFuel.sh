@@ -21,8 +21,8 @@ echo "\n \n"
 echo "DOWNLOAD file CSV from site Ministero delle Imprese e del Made in Italy \n \n"
 sleep 5
 
-wget -O $_csv_directory_price --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "https://www.mimit.gov.it/images/exportCSV/prezzo_alle_8.csv"
-wget -O $_csv_directory_registry --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "https://www.mimit.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv"
+wget -O $_csv_directory_price --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0" "https://www.mimit.gov.it/images/exportCSV/prezzo_alle_8.csv"
+wget -O $_csv_directory_registry --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0" "https://www.mimit.gov.it/images/exportCSV/anagrafica_impianti_attivi.csv"
 
 echo "\n \n"
 

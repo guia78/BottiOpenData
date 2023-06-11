@@ -22,8 +22,8 @@ echo "\n \n"
 echo "DOWNLOAD file CSV from site Ministero della salute \n \n"
 sleep 5
 
-wget -O $_csv_directory_registryPharm --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV"
-wget -O $_csv_directory_registryParaPharm --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" "http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV"
+wget -O $_csv_directory_registryPharm --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0" "http://www.dati.salute.gov.it/imgs/C_17_dataset_5_download_itemDownload0_upFile.CSV"
+wget -O $_csv_directory_registryParaPharm --user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0" "http://www.dati.salute.gov.it/imgs/C_17_dataset_7_download_itemDownload0_upFile.CSV"
 echo "\n \n"
 
 # script for update DB registry Pharm

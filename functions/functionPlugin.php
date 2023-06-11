@@ -225,11 +225,11 @@ function linkImgOutput($url)
     $user_id = $url[4];
     $OutputParam = explode(";", $urlImgInput);
     foreach ($OutputParam as $value){
-            //Randomize image for resolve problem cache Telegram app
-            $urlImgOutput =  randomFile($value,"");
-            apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $urlImgOutput, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup));
-            dbTrackerInsert($chat_id,$user_id,"segue", $urlImgOutput);
-            sleep(1);
+        //Randomize image for resolve problem cache Telegram app
+        $urlImgOutput =  randomFile($value,"");
+        apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $urlImgOutput, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup));
+        dbTrackerInsert($chat_id,$user_id,"segue", $urlImgOutput);
+        sleep(1);
     }
     return "Lettura dati terminata.";
 }
@@ -247,14 +247,14 @@ function serviceTmp($any)
     $chatIdSet = $any[2];
     $control = dbLocalizationTmpSelect($chatIdSet);
     if (empty($control)){
-		$error = dbLocalizationTmpInsert($chatIdSet, $serviceSet);
-		if ($error == 0){
-			$message = "Servizio scelto correttamente, ora puoi inviare la posizione usando PAPERCLIP.";
-			$responceMessage =  emoticonConvert($message);
-			return $responceMessage;
-		}
+        $error = dbLocalizationTmpInsert($chatIdSet, $serviceSet);
+        if ($error == 0){
+            $message = "Servizio scelto correttamente, ora puoi inviare la posizione usando PAPERCLIP.";
+            $responceMessage =  emoticonConvert($message);
+            return $responceMessage;
+        }
     }else{
-		dbLocalizationTmpDelete($chatIdSet);
+	dbLocalizationTmpDelete($chatIdSet);
         dbLocalizationTmpInsert($chatIdSet, $serviceSet);
         $message = "Servizio scelto correttamente, ora puoi inviare la posizione usando PAPERCLIP.";
         $responceMessage =  emoticonConvert($message);
@@ -414,18 +414,19 @@ function ArtSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $m
  */
 function WifiSearch($longitude, $latitude, $chat_id, $user_id, $first_name_id, $message_id, $reply_markup)
 {
-    //Setting variable AND Initialize variable
+    // Setting variable AND Initialize variable
     $link = "http://maps.google.com/maps?daddr=".$latitude."," .$longitude ."&amp;ll=";
     $positionRecive = "Ti trovi presso: ";
     $coordinate = array($latitude, $longitude);
     $distanceSearch = "2";
     $messageSend = "Sto cercando i punti Wifi intorno a te nel raggio di ".$distanceSearch." km.";
+    // Log action
     dbLogTextOn($chat_id,$first_name_id,$message_id,'<br><a href="'.$link.'" target="_blank">'.$link.'</a>');
     //reverse coordinate to address
     $address = street($coordinate);
     $positionRecive = $positionRecive . $address;
 
-    //send message position and attemp
+    // Send message position and attemp
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $positionRecive, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' => $messageSend, 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
     $tableWifi = dbWiFiSelect($latitude, $longitude, $distanceSearch);
@@ -513,8 +514,8 @@ function InfoTrafficoAutostradaFvg()
     $txt_i = "<div class=\"c-newsticker__text\">";
     $txt_f = "</div>";
     $off = "0";
+     $letto = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
     // To Clean Text-HTML and convet character
-    $letto = scrapeInfoTrafficoAutostradaFvg($txt,$txt_i,$txt_f,$off);
     $letto = strip_tags($letto, '<strong>');
     $letto = preg_replace('/\\s{2,}/',"\n",$letto);
     return $letto."\n\nFonte: Info viaggiando delle Autostrade Autovie Venete.";
@@ -564,7 +565,7 @@ function PsOnlineFVG($variable)
     
     //return the transfer as a string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/50.0.0.0');
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0');
     
     // $outPut contains the output Array
     $page = curl_exec($ch);
@@ -614,7 +615,7 @@ function PsOnlineFVG($variable)
 
 
 /*
- * Function SSM()
+ * Function Ssm()
  * https://online.ssm.it/php/mobile/parkinfo
  * Json info parking Udine Sistema Sosta mobilit�
  * http://www.ssm.it/
@@ -633,7 +634,7 @@ function Ssm()
     
     //return the transfer as a string
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/50.0.0.0');
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20210101 Firefox/111.0');
     
     // $outPut contains the output Array
     $page = curl_exec($ch);
@@ -680,21 +681,21 @@ function AlertProtezione($link)
     $shortUrlFinal = "";
 
     $txt = file_get_contents($linkNew);
-    //$txt_i = "<h3 class=\"field-content\">ALLERTA REGIONALE";
     $txt_i = "<div class=\"views-field views-field-field-body\">";
     $txt_m = "<div class=\"views-row\">";
     $txt_f = "<!-- /#main, /#main-wrapper -->";
     $off = "0";
     $letto = scrapeAlertProtezione($txt, $txt_i, $txt_m, $txt_f, $off);
+    // For PDF link Alert
     $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?.pdf)\\1[^>]*>(.*)<\/a>";
     if(preg_match_all("/$regexp/siU", $letto, $matches, PREG_SET_ORDER)){
-            $i = 0;
-            foreach($matches as $match) {
-                    $i = $i+1;
-                    $urlPdf = $match[2];
-                    $shortURL = $i.") ".initShort($urlPdf);
-                    $shortUrlFinal = $shortUrlFinal . "\n" . $shortURL;
-            }
+        $i = 0;
+        foreach($matches as $match) {
+            $i = $i+1;
+            $urlPdf = $match[2];
+            $shortURL = $i.") ".initShort($urlPdf);
+            $shortUrlFinal = $shortUrlFinal . "\n" . $shortURL;
+        }
     }
     $letto = strip_tags(str_replace('<', ' <', $letto));
     $letto = str_replace(array("\n"), "", $letto);
