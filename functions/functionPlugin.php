@@ -674,18 +674,19 @@ function AlertProtezione($link)
     $chat_id = $link[2];
     $reply_markup = $link[3]; 
     $user_id = $link[4];
+    // Setting variable
     $urlPdf = "";
     $shortUrlFinal = "";
-
     $txt = file_get_contents($linkNew);
     $txt_i = "<div class=\"views-field views-field-field-body\">";
     $txt_m = "<div class=\"views-row\">";
     $txt_f = "<!-- /#main, /#main-wrapper -->";
     $off = "0";
-    $letto = scrapeAlertProtezione($txt, $txt_i, $txt_m, $txt_f, $off);
+    
+    $lettRead = scrapeAlertProtezione($txt, $txt_i, $txt_m, $txt_f, $off);
     // For PDF link Alert
     $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?.pdf)\\1[^>]*>(.*)<\/a>";
-    if(preg_match_all("/$regexp/siU", $letto, $matches, PREG_SET_ORDER)){
+    if(preg_match_all("/$regexp/siU", $lettRead, $matches, PREG_SET_ORDER)){
         $i = 0;
         foreach($matches as $match) {
             $i = $i+1;
@@ -694,12 +695,12 @@ function AlertProtezione($link)
             $shortUrlFinal = $shortUrlFinal . "\n" . $shortURL;
         }
     }
-    $letto = strip_tags(str_replace('<', ' <', $letto));
-    $letto = str_replace(array("\n"), "", $letto);
-    $letto = $letto . "\n " . $shortUrlFinal; //For url of pdf insert space
-    $lettoC = substr($letto, 0, 4069);
-    apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $lettoC, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
-    dbTrackerInsert($chat_id,$user_id,'segue',$lettoC);
+    $lettRead = strip_tags(str_replace('<', ' <', $lettRead));
+    $lettRead = str_replace(array("\n"), "", $lettRead);
+    $lettRead = $lettRead . "\n " . $shortUrlFinal; //For url of pdf insert space
+    $lettReadC = substr($lettRead, 0, 4069);
+    apiRequest("sendMessage", array('chat_id' => $chat_id, 'text' =>  $lettReadC, 'parse_mode' => 'HTML', 'reply_markup' => $reply_markup, 'disable_web_page_preview' => 'true'));
+    dbTrackerInsert($chat_id,$user_id,'segue',$lettReadC);
     return "Lettura dati terminata";
 }
 
