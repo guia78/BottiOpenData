@@ -449,7 +449,7 @@ function apiRequest($method, $parameters)
             dbLogUserStop($parameters['chat_id']);
         }
         // Too many request from user
-        if ($http_code == 420) {
+        if ($http_code == 429) {
             $message = "<b>Stai facendo troppe richieste, ora devi attendere un momento.</b>";
             apiRequest("sendMessage", array('chat_id' => $parameters['chat_id'], 'text' => $message, 'parse_mode' => 'HTML'));
         }
