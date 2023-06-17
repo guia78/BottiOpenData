@@ -498,8 +498,6 @@ function sendMessageChannel($user_id, $message)
     $message =  emoticonConvert($message);
     //Function of Send Message to Channel 
     truncateMessageNoPlugin($message, "", $user_id, "");
-    //Old function
-    //apiRequest("sendMessage", array('chat_id' => "$user_id", 'text' => "$message", 'parse_mode' => 'HTML'));
 }
 
 /*
